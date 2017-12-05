@@ -1,0 +1,39 @@
+Integrator "volpath" "integer maxdepth" [ 65 ]
+Transform [ 1 -0 -0 -0 -0 1 -0 -0 -0 -0 1 -0 -0 -0 1.5 1]
+Sampler "random" "integer pixelsamples" [ 128 ]
+PixelFilter "triangle" "float xwidth" [ 1.000000 ] "float ywidth" [ 1.000000 ]
+Film "image" "integer xresolution" [ 256 ] "integer yresolution" [ 256 ] "string filename" [ "C://Users//tomoy//rendering//LTE//bssrdf_scenes//pbrt.png" ]
+Camera "perspective" "float fov" [ 100.000 ]
+WorldBegin
+
+
+	MakeNamedMaterial "Light" "string type" [ "matte" ] "rgb Kd" [ 0.000000 0.000000 0.000000 ]
+	MakeNamedMaterial "diffuse_red" "string type" [ "matte" ] "rgb Kd" [ 1.000000 0.000000 0.000000 ]
+	MakeNamedMaterial "diffuse_white" "string type" [ "matte" ] "rgb Kd" [ 1.000000 1.000000 1.000000 ]
+	MakeNamedMedium "gas" "string type" [ "homogeneous" ] "rgb sigma_s" [ 0.000000 0.000000 0.000000 ] "rgb sigma_a" [ 0.000000 0.000000 0.000000 ] "float scale" [ 1.000000 ]
+	MakeNamedMaterial "ss" "string type" [ "subsurface" ] "rgb sigma_a" [ 0.1 0.1 0.1 ] "rgb sigma_s" [ 1.0 1.0 1.0 ] "float eta" [ 1.3 ]
+	MakeNamedMaterial "ss_name" "string type" [ "subsurface" ] "string name" [ "Apple" ] "float eta" [ 1.3 ]
+	MakeNamedMaterial "kdss" "string type" [ "kdsubsurface" ] "rgb mfp" [ 0.5 0.5 0.5 ] "rgb Kd" [ 0.500000 0.500000 0.500000 ] "float eta" [ 1.3 ]
+
+
+
+	AttributeBegin
+		NamedMaterial "ss_name"
+		Shape "trianglemesh"
+		"point P" [ -1 -1 -1 1 1 -1 1 -1 -1 1 1 1 -1.000000954 -0.9999989867 1 0.9999989867 -1 1 0.9999989867 -1 1 -1 -1 -1 1 -1 -1 -1.000000954 -0.9999989867 1 -1 1 -1 -1 -1 -1 -1 1 -1 1 1 1 1 1 -1 1 -1 -1 1 1 1 0.9999989867 -1 1 -1 1 -1 -1 1 1 -1.000000954 -0.9999989867 1 -1 1 1 -1 1 1 1 1 -1  ]
+	  "normal N" [ 0 0 -1 0 0 -1 0 0 -1 -0 0 1 -0 0 1 -0 0 1 0 -1 -0 0 -1 -0 0 -1 -0 -1 0 -0 -1 0 -0 -1 0 -0 0 1 -0 0 1 -0 0 1 -0 1 -0 0 1 -0 0 1 -0 0 0 0 -1 -0 0 1 0 -1 -0 -1 0 -0 0 1 -0 1 -0 0  ]
+	  "integer indices" [ 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 0 18 1 3 19 4 6 20 7 9 21 10 12 22 13 15 23 16  ]
+  AttributeEnd
+
+
+	AttributeBegin
+		AreaLightSource "diffuse" "rgb L" [ 10.000000 10.000000 10.000000 ]
+		NamedMaterial "Light"
+		Shape "trianglemesh"
+		  "point P" [ -0.25 1.5 -0.25 0.25 1.5 0.25 -0.25 1.5 0.25 0.25 1.5 -0.25  ]
+		  "normal N" [ 0 -1 0 0 -1 0 0 -1 0 0 -1 0  ]
+		  "integer indices" [ 0 1 2 0 3 1  ]
+		AttributeEnd
+
+
+WorldEnd
