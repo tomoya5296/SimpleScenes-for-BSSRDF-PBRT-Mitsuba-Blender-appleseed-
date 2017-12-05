@@ -1,0 +1,9 @@
+*.png
+*.jpg
+*.exr
+*.log
+*.bin
+*.pbrt
+*.ply
+*.tga
+*~
